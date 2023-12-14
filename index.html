@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="keywords" content=""/>
+		<meta name="description" content=""/>
+		<title>LoveYou</title>
+		<style>
+			*{margin:0;padding:0;}
+			body{background:url("images/9e60f2146a89fb758f34ef74918c63df-1000.jpg");background-size:cover;}
+			/*start top*/	
+			.top{width:500px;height:150px;margin:auto ;font-size:50px;font-family:"华文行楷";color:#f10909;
+			background:-webkit-linear-gradient(45deg,#d71f1f,#ffcc00,#fafa01,#00bfff,#00ff33,#6600ff,#333399);
+			-webkit-background-clip:text}
+			/*end top*/
+			/*start box*/
+			.box{width:400px;height:0px;margin:auto;perspective:1000px;/*景深*/}
+			.box .pic{position:relative;transform-style:preserve-3d;/*3d环境*/ animation:play 40s linear infinite;/*动画名称 执行时间 匀速 无限执行*/}
+			.box ul li{list-style:none;position:absolute;top:0;left:0;}
+			/*start box*/
+			/*定义一个关键帧*/
+			@keyframes play{
+				from{transform:rotateY(0deg);}
+				to{transform:rotateY(360deg);}
+			}
+            ul {
+                transform-style:preserve-3d;
+            }
+			/*start text*/
+			#text{width:500px;height:500px;color:#000000;margin: 40px ;font-size:20px;font-family:"方正喵呜体";}
+			/*end text*/
+		</style>
+	</head>
+	<body>
+		<!--start top-->
+		<div class="top">
+			<marquee behavior="alternate">Merry Christmas</marquee>
+		</div>
+		<!--end top-->
+		<!--start box-->
+		<div class="box">
+			<div class="pic">
+				<ul>
+					<li><img src="images/11.png" width="200" height="250" alt="100"/></li>
+					<li><img src="images/xin1.png" width="200" height="250" alt=""/></li>
+					<li><img src="images/11.png" width="200" height="250" alt="100"/></li>
+					<li><img src="images/11.png" width="200" height="250" alt="100"/></li>
+					<li><img src="images/11.png" width="200" height="250" alt="100"/></li>
+					<li><img src="images/11.png" width="200" height="250" alt="100"/></li>
+				</ul>
+			</div>
+		</div>
+		<!--end box-->
+		<!--start text-->
+		<div id="text"></div>
+		<!--end text-->
+		<audio src="/merry.mp3" type="audio" autoplay></audio>
+		<!-- <embed src="/merry.mp3" hidden="true" loop="-1" width="0" height="0"/> -->
+		<!-- <embed src="/merry.mp3" hidden="true" loop="-1" width="0" height="0"/ -->
+		<!-- <embed src="/merry.mp3" hidden="true" loop="-1" width="0" height="0"/> -->
+        <script src="js/jquery.js"></script>
+		<!--雪花-->
+		<script src="js/snow.js"></script>
+		<script>
+			$(".pic ul li").each(function(i){//遍历
+				var deg=360/$(".pic ul li").size();//size个数
+				//当前的li对象 添加css样式
+				$(this).css({"transform":"rotateY("+deg*i+"deg) translateZ(216px)"});
+				
+				$.fn.snow({
+					minSize:10,
+					maxSize:15,
+					newOn:500,
+					flakeColor:"#ffffff"
+				});
+			});
+			var i=0;
+			var str="Trong tiết trời lạnh lẽo của Nhật Bản và không khí se lạnh ở Đà Nẵng (thực ra là mát hihi). Tuy xa cách nhưng Tình yêu của chúng ta như một chiếc lò sưởi ấm áp giữa mùa đông zá zét :)). Chúc em Giáng sinh an lành và ấm áp như tình yêu của chúng ta nhé! Mãi Yêu...Tym <3";
+			
+			window.onload=function typing(){
+				//获取div
+				var mydiv=document.getElementById("text");
+				mydiv.innerHTML+=str.charAt(i);
+				i++;
+				var id=setTimeout(typing,100);
+				if(i==str.length){
+					clearTimeout(id);
+				}
+			}
+		</script>
+	</body>
+</html>
